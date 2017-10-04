@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
         
         //alloc init input collector
         InputCollector *newInput = [[InputCollector alloc] init];
-        NSString *usernameInput = [newInput inputForPrompt:@"What would you like to do next?\nnew - create new contact list\nlist - List all contacts\nquit - Exit application"];
+        NSString *usernameInput = [newInput inputForPrompt:@"What would you like to do next?\nnew - create new contact list\nlist - List all contacts\nquit - \n show - Show contact info \n Exit application"];
         
         if ([usernameInput isEqualToString:@"quit"])
             {
@@ -48,6 +48,29 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"%@", c.name);
                 }
             }
+            //BONUS
+        else if ([usernameInput isEqualToString:@"show"])
+            {
+                NSLog(@"Which contact did you want to look at?");
+                NSLog(@"Your contacts are: ");
+                for (int i = 0; i < newArray.contactArray.count; i++)
+                {
+                    Contact *c = [newArray.contactArray objectAtIndex:i];
+                    NSLog(@"%@", c.name);
+                }
+                NSString *showName = [newInput inputForPrompt:@"Enter name"];
+                BOOL isTheObjectThere = [newArray.contactArray containsObject: showName];
+                if (isTheObjectThere == YES)
+                {
+                    //THIS NEEDS TO PRINT CONTACT INFO
+                    NSString *contactString = [newArray.contactArray objectAtIndex:[newArray.contactArray containsObject: showName]];
+                    NSLog (@"%@", contactString);
+                    //
+                } else {
+                    NSLog(@"That contact doesn't exist");
+                };
+
+            };
             
 
         } while (appOn);
