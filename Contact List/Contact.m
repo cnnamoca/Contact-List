@@ -9,5 +9,15 @@
 #import "Contact.h"
 
 @implementation Contact
+    
+- (instancetype)init
+    {
+        self = [super init];
+        if (self) {
+            self.name = @"null name";
+            self.email = @"null email";
+        }
+        return self;
+    }
 
 @end

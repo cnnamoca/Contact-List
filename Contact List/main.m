@@ -29,30 +29,23 @@ int main(int argc, const char * argv[]) {
             }
         else if ([usernameInput isEqualToString:@"new"])
             {
-                Contact *contact1 = [[Contact alloc]init];
-                NSString *inputNew = [newInput inputForPrompt:@"input name or email"];
-                if ([inputNew isEqualToString:@"name"])
-                    {
-                        NSString *namePrompt = [newInput inputForPrompt:@"Please enter the full name"];
-                        contact1.name = namePrompt;
-                        NSLog (@"%@ has been added to your contacts", namePrompt);
-                        [newArray addContact: contact1];
-                    }
-                else if ([inputNew isEqualToString:@"email"])
-                    {
-                        NSString *namePrompt = [newInput inputForPrompt:@"Please enter the email"];
-                        contact1.email = namePrompt;
-                        NSLog (@"%@ has been added to your contacts", namePrompt);
-                        [newArray addContact: contact1];
-
-                    };
+                Contact *newContact = [Contact new];
+                NSLog (@"Input email: ");
+                NSString *newEmail = [newInput inputForPrompt:@"Enter email"];
+                [newContact setEmail: newEmail];
+                NSLog (@"Input name: ");
+                NSString *newName = [newInput inputForPrompt:@"Enter name"];
+                [newContact setName: newName];
+                
+                [newArray addContact: newContact];
             }
         else if ([usernameInput isEqualToString:(@"list")])
             {
-                NSLog(@"The values in your list are: ");
+                NSLog(@"Your contacts are: ");
                 for (int i = 0; i < newArray.contactArray.count; i++)
                 {
-                    NSLog(@"- %@", newArray.contactArray);
+                    Contact *c = [newArray.contactArray objectAtIndex:i];
+                    NSLog(@"%@", c.name);
                 }
             }
             
